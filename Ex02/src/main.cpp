@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "simpson_method.hpp"
+#include "simpson.hpp"
 using namespace std;
 
 int main()

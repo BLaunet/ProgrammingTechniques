@@ -1,5 +1,5 @@
 #include <cassert>
-#include "simpson_method.hpp"
+#include "simpson.hpp"
 double integrate(double a, double b, int bins, double f(double x))
 {
     assert(bins > 0);
