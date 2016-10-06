@@ -1,0 +1,8 @@
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/build/CMakeFiles/install/local.dir
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/build/CMakeFiles/list_install_components.dir
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/build/CMakeFiles/main.dir
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/build/CMakeFiles/rebuild_cache.dir
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/build/CMakeFiles/edit_cache.dir
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/build/CMakeFiles/install/strip.dir
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/build/CMakeFiles/install.dir
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/build/CMakeFiles/simpson.dir

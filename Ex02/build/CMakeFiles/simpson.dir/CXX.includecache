@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/src/simpson.cpp
+cassert
+-
+simpson.hpp
+/Users/Barth/Documents/ETH Zurich/Programming Techniques/Excercises/Ex02/src/simpson.hpp
+
