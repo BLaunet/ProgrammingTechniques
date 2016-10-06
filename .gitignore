@@ -1,2 +1,6 @@
 .DS_Store
 Questions.rtf
+*.o
+*.ii
+*.s
+eps
