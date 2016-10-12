@@ -1,4 +1,5 @@
-#include "epsilon.hpp"
+#ifndef EPSILON_HPP
+#define EPSILON_HPP
 template <class T>
 T epsilon()
 {
@@ -9,7 +10,4 @@ T epsilon()
     }
     return eps_cand;
 }
-
-template int epsilon<int>();
-template double epsilon<double>();
-template float epsilon<float>();
+#endif

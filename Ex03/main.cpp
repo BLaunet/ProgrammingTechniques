@@ -13,4 +13,6 @@ int main()
     cout << "Double epsilon : " << epsilon<double>() << endl;
     cout << "Result from the limits function : " << std::numeric_limits<double>::epsilon() << endl;
 
+    cout << "Long double epsilon : " << epsilon<long double>() << endl;
+    cout << "Result from the limits function : " << std::numeric_limits<long double>::epsilon() << endl;
 }
