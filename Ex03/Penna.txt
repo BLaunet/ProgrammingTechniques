@@ -1,0 +1,24 @@
+PENNA MODEL :
+
+Concepts :
+	- Individuals from different species aging
+	- Aging is controlled by a genome which can suffer some mutations
+	- Some mechanisms for birth and death exist
+
+All individuals from the same species share the parameters of the mechanism for birth and death :
+	- B : the genome size
+	- T : threshold of disease before dying
+	- Nmax : the max allowed population
+	- M : the mutation rate
+	- R : the minimum age of reproduction
+	- all the mechanisms in which these parameters contribute
+
+Each individual should have for its own :
+	- an age
+	- a genome
+
+For representation, I would have each individual being a instance of a class, with attributes Age and Genome.
+All the parameters for birth and death should be class parameters
+Birth and Death mechanisms should also be class functions.
+
+
