@@ -4,3 +4,8 @@ Questions.rtf
 *.ii
 *.s
 eps
+.metadata
+RemoteSystemsTempFiles
+.*
+Debug
+!.gitignore

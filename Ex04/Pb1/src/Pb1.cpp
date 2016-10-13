@@ -9,35 +9,51 @@ enum Z2 { Plus, Minus };
 template<class T>
 T identity_element() { return T(1); }
 
-// to be implemented: specialize the previous function for Z2
-
+template<>
+Z2 identity_element<Z2>() { return Plus; }
 
 Z2 operator*(const Z2 a, const Z2 b)
 {
-    // to be implemented
+    if (a==b)
+    	return Plus;
+    return Minus;
 }
 
 std::ostream& operator<<(std::ostream& os, const Z2 a)
 {
-    // to be implemented
+    if(a == Plus)
+    	os << "Plus";
+    else
+    	os << "Minus";
+    return os;
 }
 
 template<class T>
 T operator*(const T a, const Z2 b)
 {
-    // to be implemented
+	if (b == Plus)
+		return a;
+	return -a;
 }
 
 template<class T>
 T operator*(const Z2 b, const T a)
 {
-    // to be implemented
+	if (b == Plus)
+		return a;
+	return -a;
 }
 
 template<class T>
 T mypow(T a, const unsigned int n)
 {
-    // to be implemented
+//	T prod = identity_element(); ==> why this doesn't work ?
+	T prod = identity_element<T>();
+	for (unsigned int i = 0; i < n; i++) {
+		prod = prod*a;
+	}
+	return prod;
+
 }
 
 int main()
@@ -45,7 +61,7 @@ int main()
     // some testing: feel free to add your own!
     std::cout << Plus*Minus << std::endl;
     std::cout << Plus*-1*Minus << std::endl;
-    std::cout << (1.+3.)*mypow(Minus,4) << std::endl;
+    std::cout << (1.+3.)*mypow(Minus,6) << std::endl;
     for (unsigned i=0; i<7; i++)
         std::cout << "Plus^" << i << " = " << mypow(Plus,i) << std::endl;
     for (unsigned i=0; i<7; i++)
