@@ -1,11 +1,21 @@
+#Annoying hidden directory from Mac OS
 .DS_Store
-Questions.rtf
-*.o
+
+#Build files
+*.[os]
 *.ii
-*.s
-eps
-.metadata
+*~
+
+#Bin and build directories
+**/build
+**/**/build
+**/**/**/build
+**/**/bin/
+
+#Remove Eclipse subfolders
 RemoteSystemsTempFiles
-.*
 Debug
+
+#Remove all hidden files except .gitignore
+.*
 !.gitignore
