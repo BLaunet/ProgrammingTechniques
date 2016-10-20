@@ -11,3 +11,6 @@ target_link_libraries(main_simpson math)
 # Install
 install(TARGETS main_simpson DESTINATION bin)
 
+install(TARGETS math	ARCHIVE DESTINATION lib        LIBRARY DESTINATION lib        RUNTIME DESTINATION bin       )
+
+install(FILES simpson.hpp DESTINATION include)
