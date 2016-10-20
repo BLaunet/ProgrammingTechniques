@@ -47,7 +47,6 @@ T operator*(const Z2 b, const T a)
 template<class T>
 T mypow(T a, const unsigned int n)
 {
-//	T prod = identity_element(); ==> why this doesn't work ?
 	T prod = identity_element<T>();
 	for (unsigned int i = 0; i < n; i++) {
 		prod = prod*a;
