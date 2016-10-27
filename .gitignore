@@ -7,10 +7,8 @@
 *~
 
 #Bin and build directories
-**/build
-**/**/build
-**/**/**/build
-**/**/bin/
+build
+bin
 
 #Remove Eclipse subfolders
 RemoteSystemsTempFiles
