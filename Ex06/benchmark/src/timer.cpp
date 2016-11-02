@@ -1,10 +1,10 @@
 /*
- * Timer.cpp
+ * timer.cpp
  *
  *  Created on: 2 nov. 2016
  *      Author: Barth
  */
-#include "Timer.hpp"
+#include "timer.hpp"
 #include <chrono>
 
 void Timer::start(){

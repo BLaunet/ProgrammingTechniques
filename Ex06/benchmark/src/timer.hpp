@@ -1,5 +1,5 @@
 /*
- * Timer.h
+ * timer.h
  *
  *  Created on: 2 nov. 2016
  *      Author: Barth

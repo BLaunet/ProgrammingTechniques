@@ -1,11 +1,11 @@
 /*
- * Generator.cpp
+ * random.cpp
  *
  *  Created on: 2 nov. 2016
  *      Author: Barth
  */
 
-#include "Generator.hpp"
+#include "random.hpp"
 #include <cmath>
 #include <iostream>
 
@@ -23,11 +23,6 @@ Generator::var_type Generator::generate()
 {
 	x_ = (a_*x_+c_) % m_;
 	return x_ ;
-}
-
-Generator::var_type Generator::max() const
-{
-	return m_;
 }
 
 void Generator::set_m(var_type m)

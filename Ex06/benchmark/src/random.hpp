@@ -5,15 +5,15 @@
  *      Author: Barth
  */
 
-#ifndef GENERATOR_HPP_
-#define GENERATOR_HPP_
+#ifndef RANDOM_HPP_
+#define RANDOM_HPP_
 #include <cmath>
 
 class Generator {
 public:
 	typedef unsigned int var_type;
 	var_type generate();
-	var_type max() const;
+    var_type max() const {return m_;};
 	Generator(var_type);
 	static void set_m(var_type);
 	static void set_a(var_type);
@@ -26,4 +26,4 @@ private:
 
 };
 
-#endif /* GENERATOR_HPP_ */
+#endif /* RANDOM_HPP_ */

@@ -1,5 +1,5 @@
-#include <Timer.hpp>
-#include <Generator.hpp>
+#include <timer.hpp>
+#include <random.hpp>
 
 #include <iostream>
 
