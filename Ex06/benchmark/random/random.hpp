@@ -12,12 +12,10 @@
 class Generator {
 public:
 	typedef unsigned int var_type;
+    
 	var_type generate();
     var_type max() const {return m_;};
 	Generator(var_type);
-	static void set_m(var_type);
-	static void set_a(var_type);
-	static void set_c(var_type);
 private:
 	static var_type m_;
 	static var_type a_;

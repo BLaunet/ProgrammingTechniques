@@ -24,16 +24,3 @@ Generator::var_type Generator::generate()
 	x_ = (a_*x_+c_) % m_;
 	return x_ ;
 }
-
-void Generator::set_m(var_type m)
-{
-	m_=m;
-}
-void Generator::set_a(var_type a)
-{
-	a_=a;
-}
-void Generator::set_c(var_type c)
-{
-	c_=c;
-}
