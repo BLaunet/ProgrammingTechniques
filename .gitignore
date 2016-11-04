@@ -9,6 +9,7 @@
 #Bin and build directories
 build
 bin
+install
 
 #Remove Eclipse subfolders
 RemoteSystemsTempFiles
