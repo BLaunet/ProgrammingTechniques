@@ -30,8 +30,9 @@ public:
     void births();
     //Kill the animals that are supposed to be dead
     void deaths();
-    //return an array containing the age of each animal of the population
+    //Return a vector with the age of each animal in the population
     std::vector<age_type> get_ages();
+    //Return a vector with the number of bad genome for each animal in the population
     std::vector<age_type> get_bad_genomes();
     
 private:

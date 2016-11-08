@@ -28,13 +28,11 @@ Population::size_type Population::size() const
     return pop_.size();
 }
 
-//Make all the animals of the population grow of a year
 void Population::aging()
 {
     std::for_each(pop_.begin(), pop_.end(), std::mem_fun_ref(&Animal::grow));
 }
 
-//Generates babies for those who are pregnant
 void Population::births()
 {
     pop_type children;
@@ -47,12 +45,11 @@ void Population::births()
     std::copy(children.begin(),children.end(), back_inserter(pop_));
 }
 
-//Kill the animals that are supposed to be dead
 void Population::deaths()
 {
     pop_.remove_if(animal_dies_(pop_.size()));
 }
-    
+
 std::vector<age_type> Population::get_ages()
 {
     std::vector<age_type> ages;
