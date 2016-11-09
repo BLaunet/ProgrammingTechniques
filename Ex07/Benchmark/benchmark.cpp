@@ -16,6 +16,8 @@ double insert_test(C container, int val, unsigned int pos)
         typename C::iterator it = container.begin();
         std::advance(it, pos);
         container.insert(it, val);
+        // mskoenz: this will fail in many real cases, use the return value of insert
+        // as the new iterator, e.g. it = std::insert(it, val) to be sure
         container.erase(it);
     }
     t.stop();
@@ -34,6 +36,9 @@ double insert_test<std::set<int>>( std::set<int> container, int val, unsigned in
     t.start();
     for(unsigned k = 0; k < kMax; ++k)
     {
+        // mskoenz: do not handle set specially in code, just make sure you never insert a
+        // number that is already there, with it = std::insert(it, val)
+        // you can use the same code for all
         container.insert(val);
         container.erase(val);
     }
@@ -43,7 +48,7 @@ double insert_test<std::set<int>>( std::set<int> container, int val, unsigned in
 
 int main()
 {
-    srand(42);
+    srand(42); // mskoenz: best seed ;)
     unsigned int N_max = 100000;
 
     for(unsigned int n = 1; n<N_max+1; n*=10)

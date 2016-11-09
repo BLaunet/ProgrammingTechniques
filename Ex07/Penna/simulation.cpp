@@ -14,6 +14,7 @@ int main()
     Animal::set_bad_threshold(2);
     
     
+    // mskoenz: fish(3) is enough
     Population fish = Population(3);
     std:: cout << "Year Population_size" << std::endl;
     for (unsigned i = 0; i<1000; ++i) {
