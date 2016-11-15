@@ -3,6 +3,7 @@
 #include <iostream>
 #include <list>
 #include <vector>
+#include <algorithm>
 
 namespace Penna{
     
@@ -42,24 +43,42 @@ void Population::births()
             children.push_back(a->give_birth());
         }
     }
-    // mskoenz: use splice
-    std::copy(children.begin(),children.end(), back_inserter(pop_));
+    // mskoenz: use splice // blaunet : done
+    pop_.splice(pop_.begin(),children);
 }
+    
+class animal_dies_
+{
+public:
+    animal_dies_(const Population::size_type &N): pop_size(N){}
+    bool operator()(const Animal& a)
+    {
+        return (a.is_dead() || drand48() < (double) pop_size/Population::max_pop_);
+    }
+    private:
+        Population::size_type pop_size;
+        
+};
 
 void Population::deaths()
 {
     pop_.remove_if(animal_dies_(pop_.size())); // mskoenz: not bad ;)
+
 }
+
 
 std::vector<age_type> Population::get_ages()
 {
     std::vector<age_type> ages;
     
     // mskoenz: do it without loop
-    for(pop_type::iterator a=pop_.begin(); a!=pop_.end(); ++a)
-    {
-        ages.push_back(a->age());
-    }
+    //for(pop_type::iterator a=pop_.begin(); a!=pop_.end(); ++a)
+    //{
+    //    ages.push_back(a->age());
+    //}
+    //return ages;
+    // blaunet : OK
+    std::transform(pop_.begin(), pop_.end(), ages.begin(), std::mem_fun_ref(&Animal::age));
     return ages;
 }
     

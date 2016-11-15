@@ -1,6 +1,7 @@
 #include "animal.hpp"
 #include "genome.hpp"
 #include <cassert>
+#include <iostream>
 namespace Penna
 {
     
@@ -38,7 +39,7 @@ Animal::Animal( const Genome& gen )
 
 bool Animal::is_dead() const
 {
-    return age_ > maximum_age || gen_.count_bad(age_) > bad_threshold_;
+    return age_ > maximum_age || gen_.count_bad(age_) >= bad_threshold_;
 }
     
 bool Animal::is_pregnant() const

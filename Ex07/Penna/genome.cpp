@@ -3,6 +3,7 @@
 #include <cassert>
 #include <set>
 #include <stdlib.h>
+#include <iostream>
 namespace Penna
 {
     
@@ -28,6 +29,11 @@ void Genome::mutate()
         keys.insert(rand() % number_of_genes);
     for (std::set<age_type>::iterator k = keys.begin(); k!=keys.end(); ++k)
         genes_.flip(*k);
+    //for (age_type k = 0; k < mutation_rate_; ++k)
+    //{
+        //genes_.flip(k);
+    //}
+
 }
 
 

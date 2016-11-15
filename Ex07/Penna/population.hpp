@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "animal.hpp"
 #include <vector>
+#include <iostream>
 
 namespace Penna
 {
@@ -37,19 +38,6 @@ public:
     
 private:
     pop_type pop_;
-    class animal_dies_
-    {
-    public:
-        animal_dies_(const size_type &N): pop_size(N){}
-        bool operator()(const Animal& a)
-        {
-            return(a.is_dead() || drand48() < (pop_size/max_pop_));
-        }
-    private:
-        size_type pop_size;
-        
-    };
-
 };
     
 } // end of namespace Penna
