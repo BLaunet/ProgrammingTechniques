@@ -11,6 +11,8 @@ build
 bin
 install
 
+#Remove xcode files
+*.xcodeproj
 #Remove Eclipse subfolders
 RemoteSystemsTempFiles
 Debug
