@@ -5,218 +5,130 @@
 #include "function.hpp"
 #include <vector>
 
+void print(const std::vector<double> times, Func f)
+{
+    std::string names[4] = {"Hard-coded", "Function pointer", "Function object", "Virtual function"};
+    std::string str;
+    str+="Execution times for ";
+    switch (f)
+    {
+        case f1:
+            str+= "f1 = 0";
+            break;
+        case f2:
+            str+= "f2 = 1";
+            break;
+        case f3:
+            str+= "f3 = x";
+            break;
+        case f4:
+            str+= "f4 = x^2";
+            break;
+        case f5:
+            str+= "f5 = sin(x)";
+            break;
+        case f6:
+            str+= "f6 = sin(5*x)";
+            break;
+            
+    }
+    std::cout << str << std::endl;
+    int i = 0;
+    for (std::vector<double>::const_iterator p=times.begin(); p!=times.end(); ++p) {
+        std::cout << "\t" << names[i] << " : " << *p << std::endl;
+        i++;
+    }
+}
+
 int main() {
-    //Instanciation of oc-bjects
+    double a = 0;
+    double b = 1;
+    unsigned bins = 1000;
+    size_t loops = 100000;
+    Timer t;
+    
+    //I really tried my best to build a get_object_function(fn) that could give me the right object function corresponding to the enum fn, and so avoid copy/paste... but I give up
     f1_obj f1_o;
     f2_obj f2_o;
     f3_obj f3_o;
     f4_obj f4_o;
     f5_obj f5_o;
     f6_obj f6_o;
-    
-    f1_virtual f1_v;
-    f2_virtual f2_v;
-    f3_virtual f3_v;
-    f4_virtual f4_v;
-    f5_virtual f5_v;
-    f6_virtual f6_v;
-    
-    double a = 0;
-    double b = 1;
-    unsigned bins = 100;
-    size_t loops = 100000;
-    Timer t;
-    
-    // F1 = 0
-    std::vector<double> times_f1;
+    for (int f_int = f1; f_int <= f6; f_int++) {
+        
+        Func f_n = static_cast<Func>(f_int);
+        
+        std::vector<double> times;
+        
         //hard coded
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate_f1(a, b, bins);}
-    t.stop();
-    times_f1.push_back(t.duration()/loops);
+        std::function<double(double, double, unsigned int)> integ_hard = get_hard_integ(f_n);
+        t.start();
+        for(size_t k = 0; k < loops; ++k)
+            integ_hard(a, b, bins);
+        t.stop();
+        times.push_back(t.duration()/loops);
+        
         //function pointer
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f1);}
-    t.stop();
-    times_f1.push_back(t.duration()/loops);
+        std::function<return_type(argument_type)> f_p =  get_pointer_f(f_n);
+        t.start();
+        for(size_t k = 0; k < loops; ++k)
+            integrate(a, b, bins, f3_point);
+        t.stop();
+        times.push_back(t.duration()/loops);
+        
         //function obj
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f1_o);}
-    t.stop();
-    times_f1.push_back(t.duration());
+        switch (f_n) {
+            case f1:
+                t.start();
+                for(size_t k = 0; k < loops; ++k)
+                    integrate(a, b, bins, f1_o);
+                t.stop();
+                break;
+            case f2:
+                t.start();
+                for(size_t k = 0; k < loops; ++k)
+                    integrate(a, b, bins, f2_o);
+                t.stop();
+                break;
+            case f3:
+                t.start();
+                for(size_t k = 0; k < loops; ++k)
+                    integrate(a, b, bins, f3_o);
+                t.stop();
+                break;
+            case f4:
+                t.start();
+                for(size_t k = 0; k < loops; ++k)
+                    integrate(a, b, bins, f4_o);
+                t.stop();
+                break;
+            case f5:
+                t.start();
+                for(size_t k = 0; k < loops; ++k)
+                    integrate(a, b, bins, f5_o);
+                t.stop();
+                break;
+            case f6:
+                t.start();
+                for(size_t k = 0; k < loops; ++k)
+                    integrate(a, b, bins, f6_o);
+                t.stop();
+                break;
+        }
+        times.push_back(t.duration());
+        
         //virtual function
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f1_v);}
-    t.stop();
-    times_f1.push_back(t.duration());
-    
-    std::cout << "Execution times for f1 = 0" << std::endl;
-    for (std::vector<double>::iterator p=times_f1.begin(); p!=times_f1.end(); ++p) {
-        std::cout << "\t" << *p << std::endl;
+        Function* f_v = get_virtual_f(f_n);
+
+        t.start();
+        for(size_t k = 0; k < loops; ++k)
+            integrate(a, b, bins, *f_v);
+        t.stop();
+        delete f_v;
+        times.push_back(t.duration());
+        
+        print(times, f_n);
     }
     
-    // f2 = 1
-    std::vector<double> times_f2;
-    //hard coded
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate_f2(a, b, bins);}
-    t.stop();
-    times_f2.push_back(t.duration()/loops);
-    //function pointer
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f2);}
-    t.stop();
-    times_f2.push_back(t.duration()/loops);
-    //function obj
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f2_o);}
-    t.stop();
-    times_f2.push_back(t.duration());
-    //virtual function
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f2_v);}
-    t.stop();
-    times_f2.push_back(t.duration());
-    
-    std::cout << "Execution times for f2 = 1" << std::endl;
-    for (std::vector<double>::iterator p=times_f2.begin(); p!=times_f2.end(); ++p) {
-        std::cout << "\t" << *p << std::endl;
-    }
-    
-    // f3 = x
-    std::vector<double> times_f3;
-    //hard coded
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate_f3(a, b, bins);}
-    t.stop();
-    times_f3.push_back(t.duration()/loops);
-    //function pointer
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f3);}
-    t.stop();
-    times_f3.push_back(t.duration()/loops);
-    //function obj
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f3_o);}
-    t.stop();
-    times_f3.push_back(t.duration());
-    //virtual function
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f3_v);}
-    t.stop();
-    times_f3.push_back(t.duration());
-    
-    std::cout << "Execution times for f3 = x" << std::endl;
-    for (std::vector<double>::iterator p=times_f3.begin(); p!=times_f3.end(); ++p) {
-        std::cout << "\t" << *p << std::endl;
-    }
-    
-    // f4 = x^2
-    std::vector<double> times_f4;
-    //hard coded
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate_f4(a, b, bins);}
-    t.stop();
-    times_f4.push_back(t.duration()/loops);
-    //function pointer
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f4);}
-    t.stop();
-    times_f4.push_back(t.duration()/loops);
-    //function obj
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f4_o);}
-    t.stop();
-    times_f4.push_back(t.duration());
-    //virtual function
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f4_v);}
-    t.stop();
-    times_f4.push_back(t.duration());
-    
-    std::cout << "Execution times for f4 = x^2" << std::endl;
-    for (std::vector<double>::iterator p=times_f4.begin(); p!=times_f4.end(); ++p) {
-        std::cout << "\t" << *p << std::endl;
-    }
-    
-    // f5 = sin(x)
-    std::vector<double> times_f5;
-    //hard coded
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate_f5(a, b, bins);}
-    t.stop();
-    times_f5.push_back(t.duration()/loops);
-    //function pointer
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f5);}
-    t.stop();
-    times_f5.push_back(t.duration()/loops);
-    //function obj
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f5_o);}
-    t.stop();
-    times_f5.push_back(t.duration());
-    //virtual function
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f5_v);}
-    t.stop();
-    times_f5.push_back(t.duration());
-    
-    std::cout << "Execution times for f5 = sin(x)" << std::endl;
-    for (std::vector<double>::iterator p=times_f5.begin(); p!=times_f5.end(); ++p) {
-        std::cout << "\t" << *p << std::endl;
-    }
-    
-    // f6 = sin(5*x)
-    std::vector<double> times_f6;
-    //hard coded
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate_f6(a, b, bins);}
-    t.stop();
-    times_f6.push_back(t.duration()/loops);
-    //function pointer
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f6);}
-    t.stop();
-    times_f6.push_back(t.duration()/loops);
-    //function obj
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f6_o);}
-    t.stop();
-    times_f6.push_back(t.duration());
-    //virtual function
-    t.start();
-    for(size_t k = 0; k < loops; ++k)
-    {   integrate(a, b, bins, f6_v);}
-    t.stop();
-    times_f6.push_back(t.duration());
-    
-    std::cout << "Execution times for f6 = 5*x" << std::endl;
-    for (std::vector<double>::iterator p=times_f6.begin(); p!=times_f6.end(); ++p) {
-        std::cout << "\t" << *p << std::endl;
-    }
     return 0;
 }

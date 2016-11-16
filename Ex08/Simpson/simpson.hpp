@@ -50,12 +50,12 @@ double integrate_f1(double a, double b, unsigned int bins)
     
     for(unsigned i = 0; i < bins; ++i) {
         pos += dr;
-        I4 += f1(pos);
+        I4 += f1_point(pos);
         pos += dr;
-        I2 += f1(pos);
+        I2 += f1_point(pos);
     }
     
-    return (f1(a) + 2.*I2 + 4.*I4 - f1(b)) * (dr/3.);
+    return (f1_point(a) + 2.*I2 + 4.*I4 - f1_point(b)) * (dr/3.);
 }
 
 double integrate_f2(double a, double b, unsigned int bins)
@@ -66,12 +66,12 @@ double integrate_f2(double a, double b, unsigned int bins)
     
     for(unsigned i = 0; i < bins; ++i) {
         pos += dr;
-        I4 += f2(pos);
+        I4 += f2_point(pos);
         pos += dr;
-        I2 += f2(pos);
+        I2 += f2_point(pos);
     }
     
-    return (f2(a) + 2.*I2 + 4.*I4 - f2(b)) * (dr/3.);
+    return (f2_point(a) + 2.*I2 + 4.*I4 - f2_point(b)) * (dr/3.);
 }
 
 double integrate_f3(double a, double b, unsigned int bins)
@@ -82,12 +82,12 @@ double integrate_f3(double a, double b, unsigned int bins)
     
     for(unsigned i = 0; i < bins; ++i) {
         pos += dr;
-        I4 += f3(pos);
+        I4 += f3_point(pos);
         pos += dr;
-        I2 += f3(pos);
+        I2 += f3_point(pos);
     }
     
-    return (f3(a) + 2.*I2 + 4.*I4 - f3(b)) * (dr/3.);
+    return (f3_point(a) + 2.*I2 + 4.*I4 - f3_point(b)) * (dr/3.);
 }
 
 double integrate_f4(double a, double b, unsigned int bins)
@@ -98,12 +98,12 @@ double integrate_f4(double a, double b, unsigned int bins)
     
     for(unsigned i = 0; i < bins; ++i) {
         pos += dr;
-        I4 += f4(pos);
+        I4 += f4_point(pos);
         pos += dr;
-        I2 += f4(pos);
+        I2 += f4_point(pos);
     }
     
-    return (f4(a) + 2.*I2 + 4.*I4 - f4(b)) * (dr/3.);
+    return (f4_point(a) + 2.*I2 + 4.*I4 - f4_point(b)) * (dr/3.);
 }
 
 double integrate_f5(double a, double b, unsigned int bins)
@@ -114,12 +114,12 @@ double integrate_f5(double a, double b, unsigned int bins)
     
     for(unsigned i = 0; i < bins; ++i) {
         pos += dr;
-        I4 += f5(pos);
+        I4 += f5_point(pos);
         pos += dr;
-        I2 += f5(pos);
+        I2 += f5_point(pos);
     }
     
-    return (f5(a) + 2.*I2 + 4.*I4 - f5(b)) * (dr/3.);
+    return (f5_point(a) + 2.*I2 + 4.*I4 - f5_point(b)) * (dr/3.);
 }
 
 double integrate_f6(double a, double b, unsigned int bins)
@@ -130,11 +130,34 @@ double integrate_f6(double a, double b, unsigned int bins)
     
     for(unsigned i = 0; i < bins; ++i) {
         pos += dr;
-        I4 += f6(pos);
+        I4 += f6_point(pos);
         pos += dr;
-        I2 += f6(pos);
+        I2 += f6_point(pos);
     }
     
-    return (f6(a) + 2.*I2 + 4.*I4 - f6(b)) * (dr/3.);
+    return (f6_point(a) + 2.*I2 + 4.*I4 - f6_point(b)) * (dr/3.);
+}
+
+std::function<double(double, double, unsigned int)> get_hard_integ(Func fp)
+{
+    switch (fp) {
+        case f1:
+            return integrate_f1;
+            break;
+        case f2:
+            return integrate_f2;
+            break;
+        case f3:
+            return integrate_f3;
+            break;
+        case f4:
+            return integrate_f4;
+            break;
+        case f5:
+            return integrate_f5;
+            break;
+        default:
+            return integrate_f6;
+    }
 }
 #endif /* simpson_hpp */
