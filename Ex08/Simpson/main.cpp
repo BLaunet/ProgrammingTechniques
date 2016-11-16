@@ -72,7 +72,7 @@ int main() {
         std::function<return_type(argument_type)> f_p =  get_pointer_f(f_n);
         t.start();
         for(size_t k = 0; k < loops; ++k)
-            integrate(a, b, bins, f3_point);
+            integrate(a, b, bins, f_p);
         t.stop();
         times.push_back(t.duration()/loops);
         

@@ -15,4 +15,4 @@ install(TARGETS benchmark DESTINATION ${INSTALL_DIR}/bin)
 
 install(TARGETS timer	ARCHIVE DESTINATION ${INSTALL_DIR}/lib        LIBRARY DESTINATION ${INSTALL_DIR}/lib        RUNTIME DESTINATION ${INSTALL_DIR}/bin       )
 
-install(FILES timer.hpp simpson.hpp function.hpp benchmark.hpp DESTINATION ${INSTALL_DIR}/include)
+install(FILES timer.hpp simpson.hpp function.hpp benchmark.hpp DESTINATION ${INSTALL_DIR}/include)x
