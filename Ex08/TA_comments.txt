@@ -1,0 +1,15 @@
+I see that you put quite some thought and effort into it.
+
+The main points that probably mess up your measurements:
+
+std::function is as slow as OO, since it uses the same techniques inside
+-> use native function pointers
+
+I like your factory pattern, just don't forget to make the dtor virtual in the base
+
+
+to see only the comments (also later on), you can use:
+git pull --tags     // will make sure that you get the tags from the server
+git checkout ex8    // go back to my commit
+git diff HEAD~1     // compare it with your commit (my commit - 1)
+git checkout master // this brings you back to the future

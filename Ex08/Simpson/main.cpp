@@ -48,6 +48,10 @@ int main() {
     Timer t;
     
     //I really tried my best to build a get_object_function(fn) that could give me the right object function corresponding to the enum fn, and so avoid copy/paste... but I give up
+    // mskoenz: yes, to avoid c++ copy-paste, you would need meta-template programming
+    // but you could still copy paste with macro functions
+    // i.e. #define COPY_PASTER(FCT) void measure() {...... FCT(1.2)....}
+    
     f1_obj f1_o;
     f2_obj f2_o;
     f3_obj f3_o;
@@ -124,7 +128,11 @@ int main() {
         for(size_t k = 0; k < loops; ++k)
             integrate(a, b, bins, *f_v);
         t.stop();
-        delete f_v;
+        delete f_v; // mskoenz: nice! the only issue that can arise 
+        // (as soon as a subclass has members) is delete slicing, since you
+        // forgot to make the base-dtor virtual. So it will only call the
+        // base-dtor (since t is of type base) and not the actual dtor of the type
+        
         times.push_back(t.duration());
         
         print(times, f_n);

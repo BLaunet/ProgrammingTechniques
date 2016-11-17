@@ -7,6 +7,7 @@
 typedef double argument_type;
 typedef double return_type;
 
+// mskoenz: I like your enum idea a lot, nice copy-paste reduction
 enum Func {f1, f2, f3, f4, f5, f6};
 
 //Functions for hard-coded and pointer
@@ -17,6 +18,9 @@ inline return_type f4_point (argument_type x) {return x*x;}
 inline return_type f5_point (argument_type x) {return sin(x);}
 inline return_type f6_point (argument_type x) {return sin(5*x);}
 
+// mskoenz: the problem here is, that std::function also uses dyn-poly
+// i.e. base-classes and virtual functions, so it's as slow as the OO approach
+// you should use native fct pointer i.e. return_type(*)(argument_type)
 std::function<return_type(argument_type)> get_pointer_f(Func fp)
 {
     switch (fp) {
@@ -100,6 +104,7 @@ public:
 
 Function * get_virtual_f(Func fp)
 {
+    // mskoenz: and this is what we call a factory-pattern :)
     switch (fp) {
         case f1:
             return new f1_virtual;

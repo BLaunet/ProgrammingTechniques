@@ -71,6 +71,8 @@ int main() {
     t.stop();
     times_f1.push_back(t.duration()/loops);
     
+    // mskoenz: here you could have used the mentioned macro functions
+    
     //function pointer
     t.start();
     for(size_t k = 0; k < loops; ++k)

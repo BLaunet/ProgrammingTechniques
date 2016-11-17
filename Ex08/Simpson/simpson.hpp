@@ -22,6 +22,9 @@ struct result_type<R(*)(T)> { typedef R type; };
 template <class R, class T>
 struct result_type<R(T)> { typedef typename result_type<R(*)(T)>::type type; };
 
+// mskoenz: I would normally tell you, that you are missing a version that takes 
+// Function, but since you passed in a *f_v in the main, it's fine 
+// (the template instanciates for the baseclass)
 
 template <class F>
 typename result_type<F>::type integrate(typename domain_type<F>::type a, typename domain_type<F>::type b, unsigned int bins, const F& func)
