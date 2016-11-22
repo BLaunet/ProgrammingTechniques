@@ -85,14 +85,14 @@ int main() {
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f1_o);
     t.stop();
-    times_f1.push_back(t.duration());
+    times_f1.push_back(t.duration()/loops);
     
     //virtual function
     t.start();
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f1_v);
     t.stop();
-    times_f1.push_back(t.duration());
+    times_f1.push_back(t.duration()/loops);
     
     print(times_f1, f1);
     times.push_back(times_f1);
@@ -118,14 +118,14 @@ int main() {
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f2_o);
     t.stop();
-    times_f2.push_back(t.duration());
+    times_f2.push_back(t.duration()/loops);
     
     //virtual function
     t.start();
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f2_v);
     t.stop();
-    times_f2.push_back(t.duration());
+    times_f2.push_back(t.duration()/loops);
     
     print(times_f2, f2);
     times.push_back(times_f2);
@@ -151,14 +151,14 @@ int main() {
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f3_o);
     t.stop();
-    times_f3.push_back(t.duration());
+    times_f3.push_back(t.duration()/loops);
     
     //virtual function
     t.start();
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f3_v);
     t.stop();
-    times_f3.push_back(t.duration());
+    times_f3.push_back(t.duration()/loops);
     
     print(times_f3, f3);
     times.push_back(times_f3);
@@ -184,14 +184,14 @@ int main() {
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f4_o);
     t.stop();
-    times_f4.push_back(t.duration());
+    times_f4.push_back(t.duration()/loops);
     
     //virtual function
     t.start();
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f4_v);
     t.stop();
-    times_f4.push_back(t.duration());
+    times_f4.push_back(t.duration()/loops);
     
     print(times_f4, f4);
     times.push_back(times_f4);
@@ -217,14 +217,14 @@ int main() {
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f5_o);
     t.stop();
-    times_f5.push_back(t.duration());
+    times_f5.push_back(t.duration()/loops);
     
     //virtual function
     t.start();
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f5_v);
     t.stop();
-    times_f5.push_back(t.duration());
+    times_f5.push_back(t.duration()/loops);
     
     print(times_f5, f5);
     times.push_back(times_f5);
@@ -250,14 +250,14 @@ int main() {
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f6_o);
     t.stop();
-    times_f6.push_back(t.duration());
+    times_f6.push_back(t.duration()/loops);
     
     //virtual function
     t.start();
     for(size_t k = 0; k < loops; ++k)
         integrate(a, b, bins, f6_v);
     t.stop();
-    times_f6.push_back(t.duration());
+    times_f6.push_back(t.duration()/loops);
     
     print(times_f6, f6);
     times.push_back(times_f6);

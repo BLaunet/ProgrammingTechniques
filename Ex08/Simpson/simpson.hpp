@@ -141,7 +141,7 @@ double integrate_f6(double a, double b, unsigned int bins)
     return (f6_point(a) + 2.*I2 + 4.*I4 - f6_point(b)) * (dr/3.);
 }
 
-std::function<double(double, double, unsigned int)> get_hard_integ(Func fp)
+double  (*get_hard_integ(Func fp))(double, double, unsigned int)
 {
     switch (fp) {
         case f1:

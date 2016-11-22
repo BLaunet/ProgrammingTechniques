@@ -6,6 +6,7 @@ public:
     typedef double result_type;
     typedef double argument_type;
     virtual result_type operator() (argument_type x) const = 0;
+    virtual ~Function() {};
 };
 
 #endif /* function_hpp */

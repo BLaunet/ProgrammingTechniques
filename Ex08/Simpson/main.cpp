@@ -43,7 +43,7 @@ void print(const std::vector<double> times, Func f)
 int main() {
     double a = 0;
     double b = 1;
-    unsigned bins = 1000;
+    unsigned bins = 100;
     size_t loops = 100000;
     Timer t;
     
@@ -65,15 +65,14 @@ int main() {
         std::vector<double> times;
         
         //hard coded
-        std::function<double(double, double, unsigned int)> integ_hard = get_hard_integ(f_n);
+        double (*integ_hard)(double, double, unsigned int) = get_hard_integ(f_n);
         t.start();
         for(size_t k = 0; k < loops; ++k)
             integ_hard(a, b, bins);
         t.stop();
         times.push_back(t.duration()/loops);
-        
         //function pointer
-        std::function<return_type(argument_type)> f_p =  get_pointer_f(f_n);
+        return_type (*f_p)(argument_type) =  get_pointer_f(f_n);
         t.start();
         for(size_t k = 0; k < loops; ++k)
             integrate(a, b, bins, f_p);
@@ -119,7 +118,7 @@ int main() {
                 t.stop();
                 break;
         }
-        times.push_back(t.duration());
+        times.push_back(t.duration()/loops);
         
         //virtual function
         Function* f_v = get_virtual_f(f_n);
@@ -133,7 +132,7 @@ int main() {
         // forgot to make the base-dtor virtual. So it will only call the
         // base-dtor (since t is of type base) and not the actual dtor of the type
         
-        times.push_back(t.duration());
+        times.push_back(t.duration()/loops);
         
         print(times, f_n);
     }

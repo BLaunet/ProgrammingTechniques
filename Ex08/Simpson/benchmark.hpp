@@ -21,7 +21,7 @@ inline return_type f6_point (argument_type x) {return sin(5*x);}
 // mskoenz: the problem here is, that std::function also uses dyn-poly
 // i.e. base-classes and virtual functions, so it's as slow as the OO approach
 // you should use native fct pointer i.e. return_type(*)(argument_type)
-std::function<return_type(argument_type)> get_pointer_f(Func fp)
+return_type (*get_pointer_f(Func fp))(argument_type)
 {
     switch (fp) {
         case f1:
