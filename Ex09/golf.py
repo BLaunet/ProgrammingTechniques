@@ -8,5 +8,8 @@ p(A)
 J='-'*23+'\n| '
 for b in A:J+=b+(' ',' |\n| ')[b in'ejoty']
 p(J+' '*15+J[25::-1])
-for b in a:p(([b],[b+': ',d.get(b,)])[b in d])
-p(', '.join(d[f]+' begins with '+f for f in sorted(d)))
+K=''
+for b in a:
+ if b in d:K+=', '+d[b]+' begins with '+b;b+=': '+d[b]
+ p([b])
+p(K[2:])
