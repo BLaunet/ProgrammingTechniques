@@ -1,0 +1,12 @@
+Nice solution, well done!
+
+The following observations:
+
+-4: d={'a':'apple','g':'grape','l':'lemon','o':'olive'}
+    d=dict(a='apple',g='grape',l='lemon',o='olive')
+    if you have strings as keys, you can use this easier init
+
+-4: A=''.join([chr(i)+chr(i+32)for i in range(65,91)])
+    A='';for i in range(65,91):A+=chr(i)+chr(i+32)
+
+Our current best solution is 270 bytes.
