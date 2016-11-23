@@ -1,6 +1,7 @@
-d={'a':'apple','g':'grape','l':'lemon','o':'olive'}
+d=dict(a='apple',g='grape',l='lemon',o='olive')
 p=lambda x:print(x)
-A=''.join([chr(i)+chr(i+32)for i in range(65,91)])
+A=''
+for i in range(65,91):A+=chr(i)+chr(i+32)
 a=A[1::2]
 p(A[::2]+a)
 p(A)
