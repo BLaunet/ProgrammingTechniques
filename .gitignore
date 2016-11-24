@@ -1,5 +1,7 @@
-#Forgetting BitManipulation
+#Ignoring some files
 BitManipulation
+golf_reference.txt
+golf.txt
 
 #Annoying hidden directory from Mac OS
 .DS_Store

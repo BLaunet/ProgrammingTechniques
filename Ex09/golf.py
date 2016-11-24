@@ -10,6 +10,6 @@ for b in A:J+=b+(' ',' |\n| ')[b in'ejoty']
 p(J+' '*15+J[25::-1])
 K=''
 for b in a:
- if b in d:K+=', '+d[b]+' begins with '+b;b+=': '+d[b]
- p([b])
+ if b in d:K+=', '+d[b]+' begins with '+b;p([b+': ',d[b]])
+ else:p([b])
 p(K[2:])
