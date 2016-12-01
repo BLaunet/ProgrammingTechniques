@@ -51,28 +51,26 @@ int main()
     srand48(42);
     const size_type n = 1024/2;
     const unsigned num_iter = 8;
-    
     matrix_type A(n*n), B(n*n), C(n*n);
     set(A,n);
     set(B,n);
-    
     std::chrono::time_point< std::chrono::high_resolution_clock > t_start, t_end;
     t_start = std::chrono::high_resolution_clock::now();
-    
+
     for (unsigned i = 0; i < num_iter; ++i)
         multiply_simple(A, B, C, n);
-    
+
     t_end = std::chrono::high_resolution_clock::now();
     std::cout << "Own solution :" << std::endl;
     std::cout << n << " " << static_cast<std::chrono::duration<double> >(t_end - t_start).count()  << std::endl;
-    
+
     t_start = std::chrono::high_resolution_clock::now();
-    
+
     for (unsigned i = 0; i < num_iter; ++i)
         cblas_dgemm(CblasRowMajor,CblasNoTrans, CblasNoTrans, n, n, n, 0, &A[0], n, &B[0], n, 0, &C[0], n);
-    
+
     t_end = std::chrono::high_resolution_clock::now();
     std::cout << "FORTRAN solution :" << std::endl;
     std::cout << n << " " << static_cast<std::chrono::duration<double> >(t_end - t_start).count()  << std::endl;
-    
+
 }
