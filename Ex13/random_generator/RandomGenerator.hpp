@@ -51,10 +51,11 @@ public:
         result_type n;
         do {
             x = nd(g);
+            // mskoenz: it would be much cheaper not to calc this and just check ...
             f = (2./(sqrt(2*M_PI)*_p))*pow(cos(x/_p),2)*exp(-pow(x,2)/(2*pow(_p,2)));
             n = (1/(sqrt(2*M_PI)*_p))*exp(-(pow(x,2))/(2*pow(_p,2)));
             y = u(g);
-        } while (y>=f/(2*n));
+        } while (y>=f/(2*n)); // y>=pow(cos..., 2)
         return x;
     }
     

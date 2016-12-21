@@ -6,6 +6,7 @@ clean:
 simpson: main.cpp libintegrate.a
 	c++ -o $@ -Wall main.cpp -L. -lintegrate
 
+# mskoenz: good job with the lib
 libintegrate.a: simpson.cpp simpson.hpp
 	c++ -c $<
 	ar ruc $@ simpson.o
@@ -17,6 +18,7 @@ convergence.dat: simpson
 convergence.png: convergence.dat
 	gnuplot plot.gp
 
+# mskoenz: make a variable INSTAL_DIR = /usr/local and then the three below from this
 INSTALL_BIN_DIR = /usr/local/bin
 INSTALL_LIB_DIR = /usr/local/lib
 INSTALL_INC_DIR = /usr/local/include

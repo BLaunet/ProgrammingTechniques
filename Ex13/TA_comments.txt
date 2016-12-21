@@ -1,0 +1,11 @@
+Make: nicely done, even with install
+
+PI: the main-code should be in a function
+
+Distr: looks ok, remove inefficient section (maybe later make also buffered)
+
+to see only the comments (also later on), you can use:
+git pull --tags     // will make sure that you get the tags from the server
+git checkout ex13   // go back to my commit
+git diff HEAD~1     // compare it with your commit (my commit - 1)
+git checkout master // this brings you back to the future

@@ -7,6 +7,9 @@ int main(int argc, const char * argv[]) {
     std::mt19937 mt(42);
     double max_mt = (double)mt.max();
     int n_of_experience = 1000;
+    
+    // mskoenz: create a function (template if needed) that runs for one generator
+    // this is code duplication
     double sum_mt = 0;
     double sum_mt_squared = 0;
     double sum_drand = 0;
